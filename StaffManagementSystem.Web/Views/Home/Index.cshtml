@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    ViewData["WelcomeMessage"] = "Welcome Admin";
+}
+
+<div class="text-center">
+    <div class="col-sm-12 row" style="margin-top:100px">
+        <div class="col-sm-6 d-flex justify-content-center">
+            <div class="card admin-card" style="width: 30rem;">
+               
+                <div class="card-body row d-flex align-items-center justify-content-center " style="height: 15rem;">
+                    <h1 class="card-title fontcolorwhite">Admin Page</h1>
+                    <a href="/Admin" style="width: 20rem;"  class="btn btn-primary">Open</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-center">
+            <div class="card staff-card" style="width: 30rem;">
+                
+                <div class="card-body row d-flex align-items-center justify-content-center " style="height: 15rem;">
+                    <h1 class="card-title fontcolorwhite">Staff Page</h1>
+
+                    @*<p class="card-text fontcolorwhite"></p>*@
+                    <a href="/Staff" style="width: 20rem;" class="btn btn-primary">Open</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

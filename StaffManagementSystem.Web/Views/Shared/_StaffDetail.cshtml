@@ -1,0 +1,61 @@
+﻿@model Staff
+<div class="card-body">
+    @Html.HiddenFor(m => m.Id)
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <h5 class="text-start">Employee Detail</h5>
+    <hr class="hr" />
+    <div class="col-sm-12 row pb-1">
+        <div class="col-md-6 row">
+            @Html.LabelFor(m => m.emp_number,new { @class = "form-label col-sm-5 text-start" })
+            @Html.TextBoxFor(m => m.emp_number, new { @class = "form-control col-sm-7" ,@readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.emp_number, "", new { @class = "text-danger text-end" })
+        </div>
+    </div>
+    <h5 class="text-start">Personal Info</h5>
+    <hr class="hr" />
+    <div class="col-sm-12 row pb-1">
+        <div class="col-md-6 row">
+            @Html.LabelFor(m => m.first_name,new { @class = "form-label col-sm-5 text-start" })
+            @Html.TextBoxFor(m => m.first_name, new { @class = "form-control col-sm-7",@readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.first_name, "", new { @class = "text-danger text-end" })
+        </div>
+        <div class="col-md-6 row">
+            @Html.LabelFor(m => m.last_name,new { @class = "form-label col-sm-5 text-start" })
+            @Html.TextBoxFor(m => m.last_name, new { @class = "form-control col-sm-7",@readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.last_name, "", new { @class = "text-danger text-end" })
+        </div>
+    </div>
+    <div class="col-sm-12 row pb-1">
+        <div class="col-md-6 row">
+            @Html.LabelFor(m => m.date_of_birth,new { @class = "form-label col-sm-5 text-start" })
+            @Html.TextBoxFor(m => m.date_of_birth,"{0:dd/MM/yyyy}", new { @class = "form-control col-sm-7",@readonly = "readonly"})
+            @Html.ValidationMessageFor(m => m.date_of_birth,"",  new { @class = "text-danger text-end" })
+        </div>
+        <div class="col-md-6 row">
+            @Html.HiddenFor(m => m.gender.Id)
+            @Html.LabelFor(m => m.gender,new { @class = "form-label col-sm-5 text-start" })
+            @Html.TextBoxFor(m => m.gender.description, new { @class = "form-control col-sm-7",@readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.gender, "", new { @class = "text-danger text-end" })
+        </div>
+
+    </div>
+    <h5 class="text-start">Qualification and Experience</h5>
+    <hr class="hr" />
+
+    <div class="col-sm-12 row pb-1">
+        <div class="col-md-6 row">
+
+            @Html.LabelFor(m => m.years_experience,new { @class = "form-label col-sm-5 text-start" })
+            @Html.TextBoxFor(m => m.years_experience, new { @class = "form-control col-sm-7",@readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.years_experience, "", new { @class = "text-danger text-end" })
+        </div>
+        <div class="col-md-6 row">
+            @Html.HiddenFor(m => m.qualification.Id)
+            @Html.HiddenFor(m => m.qualification.level)
+            @Html.LabelFor(m => m.qualification,new { @class = "form-label col-sm-5 text-start" })
+            @Html.TextBoxFor(m => m.qualification.description, new { @class = "form-control col-sm-7",@readonly = "readonly", @placeholder ="DD/MM/YYYY" })
+            @Html.ValidationMessageFor(m => m.qualification, "", new { @class = "text-danger text-end" })
+        </div>
+    </div>
+</div>

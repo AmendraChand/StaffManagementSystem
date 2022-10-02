@@ -1,0 +1,130 @@
+﻿@model Staff
+@{
+    ViewData["Title"] = "Update Staff Details";
+}
+
+<div class="text-center">
+    <div class="card mb-3">
+        <div class="card-header">
+            Search Staff
+        </div>
+        <div class="card-body">
+            
+             @using (Html.BeginForm("Update", "Staff", FormMethod.Get, new { enctype = "multipart/form-data", id = "frmSearchStaff" }))
+            {
+                <div class="col-sm-12 row pb-1">
+                    <div class="col-md-6 row">
+                        @Html.LabelFor(m => m.emp_number,new { @class = "form-label col-sm-5 text-start" })
+                        <input class="form-control col-sm-7" type="text" name="emp_num" id="emp_num" maxlength="20" />
+                    </div>
+                    <div class="col-md-6 row text-start">
+                        <div>
+                            <input type="submit" value="Search" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                }
+
+
+
+        </div>
+    </div>
+    @if (Model != null)
+    {
+        <div id="staffdetails" class="card">
+
+            <div class="card-header">
+                Staff Details
+            </div>
+            @using (Html.BeginForm("Update", "Staff", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmUpdateStaff" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-sm-12" id="staffdetailview">
+                    @Html.Partial("_StaffDetail")
+                </div>
+                <div id="updateStaffBtn" class="card-footer">
+                    
+                    <input type="submit" value="Update" class="btn btn-primary" onclick="return jsvalidateform();" />
+                </div>
+            }
+
+            
+        </div>
+    }
+    else
+    {
+    }
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var controllerName = '@ViewContext.RouteData.Values["Controller"].ToString()';
+
+        if (controllerName=='Staff')
+        {
+            $("#first_name").attr("readonly", false);
+            $("#last_name").attr("readonly", false);
+        }
+        var recordfound = '@ViewData["recordfound"]';
+        var updatestatus = '@ViewData["updatestatus"]';
+        if (recordfound.toLocaleLowerCase() == 'false') {
+            swal({
+                title: "No Record found",
+                text: "Please check employee number and search again",
+                icon: "warning",
+                dangerMode: true,
+            })
+        }
+
+        if (updatestatus.toLocaleLowerCase() == 'true') {
+            swal({
+                title: "Success",
+                text: "Staff record has been updated successfully",
+                icon: "success",
+            })
+            $("#first_name").attr("readonly", true);
+            $("#last_name").attr("readonly", true);
+            $("#updateStaffBtn").hide();
+            
+        }
+
+        if (updatestatus.toLocaleLowerCase() == 'error') {
+            swal({
+                title: "Ooooopppppssss",
+                text: "Something Went Wrong, record not Updated",
+                icon: "error",
+            })
+        }
+        
+
+
+
+
+    });
+   
+    function jsvalidateform() {
+        event.preventDefault();
+        swal({
+            title: "Confirm Update",
+            text: "Are you sure you want to update your record?",
+            icon: "warning",
+            buttons: true,
+            
+        })
+            .then((confirm) => {
+                if (confirm) {
+                    document.getElementById("frmUpdateStaff").submit();
+                    
+                } else {
+                    return false;
+                }
+            });
+    }
+</script>
+@*<script>
+    if (location.href.includes('?')) {
+        history.pushState({}, null, location.href.split('?')[0]);
+    }
+</script>*@
